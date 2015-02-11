@@ -5,17 +5,19 @@ Run openstack on a single instance via [devstack](http://docs.openstack.org/deve
 
 Requirements
 ------------
+```
+# file /requirements.yml
+- src: chrismeyersfsu.devstack
+```
+`ansible-galaxy install -r requirements.yml` to install this role.
 
 Tested on Ubuntu 14.04. Only supports apt package manager.
 
 Role Variables
 --------------
-Variables should be overridden in `vars/main.xml`.
 
 `nova_password` SHOULD be overridden.
-```
-nova_password: UbEYy68XF2Uk6eKaLX
-```
+
 `nova_groups` describes the instances to spin up on the devstack instance. This is helpful for exploring a populated API.
 ```
 nova_groups:
@@ -34,12 +36,6 @@ Dependencies
 
 Example Playbook
 ----------------
-
-```
-# file /requirements.yml
-- src: chrismeyersfsu.devstack
-```
-`ansible-galaxy install -r requirements.yml` to install this role.
 
 The simpliest usage of the devstack role will setup devstack and instantiate 5 vm instances.
 ```
