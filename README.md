@@ -10,6 +10,8 @@ Tested on Ubuntu 14.04. Only supports apt package manager.
 
 Role Variables
 --------------
+Variables should be overridden in `vars/main.xml`.
+
 `nova_auth_url` and `nova_password` should be overridden.
 ```
 nova_auth_url: "http://devstack.testing.ansible.com:5000/v2.0/"
