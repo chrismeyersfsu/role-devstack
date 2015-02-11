@@ -5,6 +5,11 @@ Run openstack on a single instance via [devstack](http://docs.openstack.org/deve
 
 Requirements
 ------------
+```
+# file /requirements.yml
+- src: chrismeyersfsu.devstack
+```
+`ansible-galaxy install -r requirements.yml` to install this role.
 
 Tested on Ubuntu 14.04. Only supports apt package manager.
 
@@ -35,12 +40,6 @@ Dependencies
 
 Example Playbook
 ----------------
-
-```
-# file /requirements.yml
-- src: chrismeyersfsu.devstack
-```
-`ansible-galaxy install -r requirements.yml` to install this role.
 
 The simpliest usage of the devstack role will setup devstack and instantiate 5 vm instances.
 ```
