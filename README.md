@@ -39,18 +39,12 @@ Example Playbook
 
 The simpliest usage of the devstack role will setup devstack and instantiate 5 vm instances.
 ```
-- { role: chrismeyersfsu.devstack, tags: devstack_setup }
+hosts: all
+roles:
+  - chrismeyersfsu.devstack
 ```
 
-To JUST install devstack.
-```
-- { role: chrismeyersfsu.devstack, nova_setup: true, nova_groups: undefined, tags: devstack_setup }
-```
-
-To JUST invoke the 5 vm creations.
-```
-- { role: chrismeyersfsu.devstack, nova_setup: false, tags: devstack_nova }
-```
+For more complex and featurful uses of the role please see (playbook-devstack)[https://github.com/chrismeyersfsu/playbook-devstack]
 
 License
 -------
