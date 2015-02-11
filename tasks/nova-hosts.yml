@@ -11,4 +11,4 @@
     state: "{{ nova_instance_state }}"
     meta:
       group: "{{ nova_group.group_name }}"
-  with_sequence: count={{ nova_group.instance_count }}
+  with_sequence: start=0 end={{ nova_group.instance_count|default(0) }}
