@@ -15,7 +15,6 @@ Tested on Ubuntu 14.04. Only supports apt package manager.
 
 Role Variables
 --------------
-Variables should be overridden in `vars/main.xml`.
 
 `nova_auth_url` and `nova_password` should be overridden.
 ```
