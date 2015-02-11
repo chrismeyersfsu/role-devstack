@@ -14,8 +14,10 @@ Role Variables
 ```
 nova_auth_url: "http://devstack.testing.ansible.com:5000/v2.0/"
 ```
-
-
+`nova_password` should be overriden
+```
+nova_password: UbEYy68XF2Uk6eKaLX
+```
 `nova_groups` describes the instances to spin up on the devstack instance. This is helpful for exploring a populated API.
 ```
 nova_groups:
