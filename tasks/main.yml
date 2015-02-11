@@ -1,46 +1,56 @@
 ---
 - fail: msg="Role only capable of creating 10 groups. This will not be a limitation in Ansible 2. Pending this module update."
-  when: nova_groups is defined and nova_groups[11] is defined
+  when: (nova_groups|length) > 10
 
 - include: create-devstack.yml
   when: nova_setup is not defined or nova_setup == true
 
 - include: "nova-hosts.yml nova_instance_state='absent' nova_group={{ nova_groups[0] }}"
-  include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[0] }}"
-  when: nova_groups is defined and nova_groups[0] is defined
+  when: (nova_groups|length) > 0
+- include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[0] }}"
+  when: (nova_groups|length) > 0
 
 - include: "nova-hosts.yml nova_instance_state='absent' nova_group={{ nova_groups[1] }}"
-  include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[1] }}"
-  when: nova_groups is defined and nova_groups[1] is defined
+  when: (nova_groups|length) > 1
+- include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[1] }}"
+  when: (nova_groups|length) > 1
 
 - include: "nova-hosts.yml nova_instance_state='absent' nova_group={{ nova_groups[2] }}"
-  include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[2] }}"
-  when: nova_groups is defined and nova_groups[2] is defined
+  when: (nova_groups|length) > 2
+- include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[2] }}"
+  when: (nova_groups|length) > 2
 
 - include: "nova-hosts.yml nova_instance_state='absent' nova_group={{ nova_groups[3] }}"
-  include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[3] }}"
-  when: nova_groups is defined and nova_groups[3] is defined
+  when: (nova_groups|length) > 3
+- include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[3] }}"
+  when: (nova_groups|length) > 3
 
 - include: "nova-hosts.yml nova_instance_state='absent' nova_group={{ nova_groups[4] }}"
-  include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[4] }}"
-  when: nova_groups is defined and nova_groups[4] is defined
+  when: (nova_groups|length) > 4
+- include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[4] }}"
+  when: (nova_groups|length) > 4
 
 - include: "nova-hosts.yml nova_instance_state='absent' nova_group={{ nova_groups[5] }}"
-  include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[5] }}"
-  when: nova_groups is defined and nova_groups[5] is defined
+  when: (nova_groups|length) > 5
+- include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[5] }}"
+  when: (nova_groups|length) > 5
 
 - include: "nova-hosts.yml nova_instance_state='absent' nova_group={{ nova_groups[6] }}"
-  include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[6] }}"
-  when: nova_groups is defined and nova_groups[6] is defined
+  when: (nova_groups|length) > 6
+- include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[6] }}"
+  when: (nova_groups|length) > 6
 
 - include: "nova-hosts.yml nova_instance_state='absent' nova_group={{ nova_groups[7] }}"
-  include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[7] }}"
-  when: nova_groups is defined and nova_groups[7] is defined
+  when: (nova_groups|length) > 7
+- include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[7] }}"
+  when: (nova_groups|length) > 7
 
 - include: "nova-hosts.yml nova_instance_state='absent' nova_group={{ nova_groups[8] }}"
-  include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[8] }}"
-  when: nova_groups is defined and nova_groups[8] is defined
+  when: (nova_groups|length) > 8
+- include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[8] }}"
+  when: (nova_groups|length) > 8
 
 - include: "nova-hosts.yml nova_instance_state='absent' nova_group={{ nova_groups[9] }}"
-  include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[9] }}"
-  when: nova_groups is defined and nova_groups[9] is defined
+  when: (nova_groups|length) > 9
+- include: "nova-hosts.yml nova_instance_state='present' nova_group={{ nova_groups[9] }}"
+  when: (nova_groups|length) > 9
