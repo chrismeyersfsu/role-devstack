@@ -1,0 +1,15 @@
+[[local|localrc]]
+DEST=/opt/stack
+LOGDIR=$DEST/logs
+LOGFILE=$LOGDIR/stack.sh.log
+SERVICE_HOST=devstack.testing.ansible.com
+IMAGE_HOST=$SERVICE_HOST
+IDENTITY_HOST=$SERVICE_HOST
+ADMIN_PASSWORD={{ nova_password }}
+MYSQL_PASSWORD=vuezSj6dEz8k953feN
+RABBIT_PASSWORD=q87tent7KUUS5zE7SX
+SERVICE_PASSWORD=2tHRvcPv9uV5HDDtfk
+SERVICE_TOKEN=frXLrf2m4BuHqsGL7x
+
+[osapi_v3]
+enabled = True

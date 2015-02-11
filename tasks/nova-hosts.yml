@@ -1,0 +1,14 @@
+- name: "Setting nova instance state to: {{ nova_instance_state }}"
+  local_action: 
+    module: nova_compute
+    login_username: "{{ nova_username }}"
+    login_password: "{{ nova_password }}"
+    login_tenant_name: "{{ nova_tenant_name }}"
+    image_name: "{{ nova_image_name }}"
+    name: "{{ nova_group.instance_name }}-{{ nova_group.group_name}}-{{ item }}"
+    flavor_include: "{{ nova_flavor_name }}"
+    auth_url: "{{ nova_auth_url }}"
+    state: "{{ nova_instance_state }}"
+    meta:
+      group: "{{ nova_group.group_name }}"
+  with_sequence: count={{ nova_group.instance_count }}
