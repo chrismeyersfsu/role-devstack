@@ -53,7 +53,7 @@ To JUST invoke the 5 vm creations.
 License
 -------
 
-BSD
+GPLv2
 
 Author Information
 ------------------
