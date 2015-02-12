@@ -2,7 +2,7 @@
 galaxy_info:
   author: Chris Meyers
   description: Deploy devstack on a vm instance (i.e. ec2, vSphere, vmware, Digital Ocean, etc.)
-  company: Ansible 
+  company: None
   license: license (GPLv2)
   min_ansible_version: 1.2
   #
@@ -118,4 +118,3 @@ dependencies: []
   # dependencies available via galaxy should be listed here.
   # Be sure to remove the '[]' above if you add dependencies
   # to this list.
-  

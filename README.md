@@ -31,7 +31,7 @@ nova_groups:
 
 Dependencies
 ------------
-
+None
 
 
 Example Playbook
@@ -54,4 +54,5 @@ GPLv2
 Author Information
 ------------------
 
-Chris Meyers works for Ansible. This is his first playbook.
+Chris Meyers. This is his first playbook.
+chris.meyers.fsu@gmail.com
