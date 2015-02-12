@@ -1,13 +1,40 @@
 ---
-- name: Install git
+
+- name: Install dependencies
   sudo: yes
-  apt: name=git state=installed update_cache=yes
+  apt: "name={{ item }} state=installed update_cache=yes"
+  with_items:
+    - git
+  when: ansible_os_family == 'Debian'
+
+- name: Install dependencies
+  sudo: yes
+  yum: "name={{ item }} state=installed update_cache=yes"
+  with_items:
+    - git
+    - libselinux-python
+  when: ansible_os_family == 'RedHat'
 
 - name: Clone devstack
-  git: "repo=https://github.com/openstack-dev/devstack.git dest='{{ stack_dir }}' recursive=no version='stable/juno'"
+  git: "repo='https://github.com/openstack-dev/devstack.git' dest='{{ devstack_dir }}/' recursive=no version='{{ devstack_version }}'"
+
+- name: Create stack user
+  sudo: yes
+  command: "{{ devstack_dir }}/tools/create-stack-user.sh"
+  environment:
+    STACK_USER: stack
+
+- name: Clone devstack
+  git: "repo=https://github.com/openstack-dev/devstack.git dest='{{ devstack_dir }}' recursive=no version='{{ devstack_version }}'"
+  sudo: yes
+  sudo_user: stack
 
 - name: Copy openstack config script
-  template: "src='local.j2' dest='{{ stack_dir }}/local.conf'"
+  template: "src='local.j2' dest='{{ devstack_dir }}/local.conf'"
+  sudo: yes
+  sudo_user: stack
 
 - name: Run openstack init script
-  shell: "{{ stack_dir }}/stack.sh"
+  shell: "{{ devstack_dir }}/stack.sh"
+  sudo: yes
+  sudo_user: stack

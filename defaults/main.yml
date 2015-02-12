@@ -1,5 +1,6 @@
 ---
-stack_dir: "/home/ubuntu/devstack"
+devstack_dir: "~/devstack-installer"
+devstack_version: "stable/juno"
 nova_username: demo
 nova_password: UbEYy68XF2Uk6eKaLX
 nova_tenant_name: demo
