@@ -2,7 +2,7 @@
 DEST=/opt/stack
 LOGDIR=$DEST/logs
 LOGFILE=$LOGDIR/stack.sh.log
-SERVICE_HOST=devstack.testing.ansible.com
+SERVICE_HOST={{ inventory_hostname }}
 IMAGE_HOST=$SERVICE_HOST
 IDENTITY_HOST=$SERVICE_HOST
 ADMIN_PASSWORD={{ nova_password }}

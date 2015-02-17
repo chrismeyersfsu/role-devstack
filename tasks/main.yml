@@ -7,30 +7,50 @@
 
 - include: "nova-hosts.yml nova_instance_state={{ nova_instance_state|default('present') }} nova_group={{ nova_groups[0] }}"
   when: (nova_groups|length) > 0
+  tags:
+    - nova_instances
 
 - include: "nova-hosts.yml nova_instance_state={{ nova_instance_state|default('present') }} nova_group={{ nova_groups[1] }}"
   when: (nova_groups|length) > 1
+  tags:
+    - nova_instances
 
 - include: "nova-hosts.yml nova_instance_state={{ nova_instance_state|default('present') }} nova_group={{ nova_groups[2] }}"
   when: (nova_groups|length) > 2
+  tags:
+    - nova_instances
 
 - include: "nova-hosts.yml nova_instance_state={{ nova_instance_state|default('present') }} nova_group={{ nova_groups[3] }}"
   when: (nova_groups|length) > 3
+  tags:
+    - nova_instances
 
 - include: "nova-hosts.yml nova_instance_state={{ nova_instance_state|default('present') }} nova_group={{ nova_groups[4] }}"
   when: (nova_groups|length) > 4
+  tags:
+    - nova_instances
 
 - include: "nova-hosts.yml nova_instance_state={{ nova_instance_state|default('present') }} nova_group={{ nova_groups[5] }}"
   when: (nova_groups|length) > 5
+  tags:
+    - nova_instances
 
 - include: "nova-hosts.yml nova_instance_state={{ nova_instance_state|default('present') }} nova_group={{ nova_groups[6] }}"
   when: (nova_groups|length) > 6
+  tags:
+    - nova_instances
 
 - include: "nova-hosts.yml nova_instance_state={{ nova_instance_state|default('present') }} nova_group={{ nova_groups[7] }}"
   when: (nova_groups|length) > 7
+  tags:
+    - nova_instances
 
 - include: "nova-hosts.yml nova_instance_state={{ nova_instance_state|default('present') }} nova_group={{ nova_groups[8] }}"
   when: (nova_groups|length) > 8
+  tags:
+    - nova_instances
 
 - include: "nova-hosts.yml nova_instance_state={{ nova_instance_state|default('present') }} nova_group={{ nova_groups[9] }}"
   when: (nova_groups|length) > 9
+  tags:
+    - nova_instances

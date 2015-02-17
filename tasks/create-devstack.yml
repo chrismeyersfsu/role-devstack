@@ -5,6 +5,7 @@
   apt: "name={{ item }} state=installed update_cache=yes"
   with_items:
     - git
+    - python-pip
   when: ansible_os_family == 'Debian'
 
 - name: Install dependencies
@@ -14,6 +15,22 @@
     - git
     - libselinux-python
   when: ansible_os_family == 'RedHat'
+
+- name: remove pip for centos ... devstack will install pip
+  sudo: yes
+  yum: "name={{ item }} state=absent"
+  with_items:
+    - python-pip
+    - python-urllib3
+  when: ansible_os_family == 'RedHat'
+
+- name: install pip
+  sudo: yes
+  shell: "curl https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py | sudo python2.7 -"
+
+- name:
+  sudo: yes
+  shell: "pip install --upgrade --force-reinstall urllib3 requests"
 
 - name: Remove devstack repo
   command: "rm -rf {{ devstack_dir }}"
@@ -37,6 +54,12 @@
   sudo: yes
   sudo_user: "{{ devstack_user }}"
 
+- name: unstack before we stack
+  sudo: yes
+  shell: "{{ devstack_dir }}/unstack.sh"
+  sudo_user: "{{ devstack_user }}"
+
+  # path hack to work on centos 7
 - name: Run openstack init script
   shell: "{{ devstack_dir }}/stack.sh"
   sudo: yes
