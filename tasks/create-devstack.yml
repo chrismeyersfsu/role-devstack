@@ -10,7 +10,7 @@
 
 - name: Install dependencies
   sudo: yes
-  yum: "name={{ item }} state=installed"
+  yum: "name={{ item }} state=installed update_cache=yes"
   with_items:
     - git
     - libselinux-python
