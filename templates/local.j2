@@ -11,6 +11,12 @@ RABBIT_PASSWORD=q87tent7KUUS5zE7SX
 SERVICE_PASSWORD=2tHRvcPv9uV5HDDtfk
 SERVICE_TOKEN=frXLrf2m4BuHqsGL7x
 
+# logging will fill up the disk
+DATABASE_QUERY_LOGGING=False
+
+# Enable Glance
+ENABLED_SERVICES+=,g-api,g-reg
+
 [[post-config|$NOVA_CONF]]
 [osapi_v3]
 enabled = True
