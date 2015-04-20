@@ -24,16 +24,25 @@
     - python-urllib3
   when: ansible_os_family == 'RedHat'
 
+- name: remove pip for centos
+  sudo: yes
+  pip: name=pip state=absent
+  when: ansible_os_family == 'RedHat'
+
 - name: install pip
   sudo: yes
   shell: "curl https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py | sudo python2.7 -"
 
-- name:
+- name: Upgrade and install pip packages
   sudo: yes
-  shell: "pip install --upgrade --force-reinstall urllib3 requests"
+  pip: "name={{ item }} state=latest"
+  with_items:
+    - urllib3
+    - requests
+  when: ansible_os_family == 'RedHat'
 
 - name: Remove devstack repo
-  command: "rm -rf {{ devstack_dir }}"
+  file: "path='{{ devstack_dir }}' state=absent"
   sudo: yes
 
 - name: Clone devstack
