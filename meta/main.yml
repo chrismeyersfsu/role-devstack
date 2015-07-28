@@ -17,7 +17,7 @@ galaxy_info:
   #  - 5
   #  - 6
   #  - 7
-    - name: Ubuntu
+  - name: Ubuntu
     versions:
   #  - all
   #  - lucid
