@@ -5,41 +5,7 @@
   apt: "name={{ item }} state=installed update_cache=yes"
   with_items:
     - git
-    - python-pip
   when: ansible_os_family == 'Debian'
-
-- name: Install dependencies
-  sudo: yes
-  yum: "name={{ item }} state=installed update_cache=yes"
-  with_items:
-    - git
-    - libselinux-python
-  when: ansible_os_family == 'RedHat'
-
-- name: remove pip for centos ... devstack will install pip
-  sudo: yes
-  yum: "name={{ item }} state=absent"
-  with_items:
-    - python-pip
-    - python-urllib3
-  when: ansible_os_family == 'RedHat'
-
-- name: remove pip for centos
-  sudo: yes
-  pip: name=pip state=absent
-  when: ansible_os_family == 'RedHat'
-
-- name: install pip
-  sudo: yes
-  shell: "curl https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py | sudo python2.7 -"
-
-- name: Upgrade and install pip packages
-  sudo: yes
-  pip: "name={{ item }} state=latest"
-  with_items:
-    - urllib3
-    - requests
-  when: ansible_os_family == 'RedHat'
 
 - name: Remove devstack repo
   file: "path='{{ devstack_dir }}' state=absent"
@@ -65,7 +31,7 @@
 
 - name: unstack before we stack
   sudo: yes
-  shell: "{{ devstack_dir }}/unstack.sh"
+  shell: "{{ devstack_dir }}/unstack.sh || true"
   sudo_user: "{{ devstack_user }}"
 
   # path hack to work on centos 7
@@ -73,3 +39,5 @@
   shell: "{{ devstack_dir }}/stack.sh"
   sudo: yes
   sudo_user: "{{ devstack_user }}"
+  async: 1200
+  poll: 30

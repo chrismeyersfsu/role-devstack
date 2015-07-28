@@ -8,7 +8,6 @@ nova_tenant_name: demo
 nova_image_name: "cirros-0.3.2-x86_64-uec"
 nova_instance_name: autobot
 nova_flavor_name: m1.nano
-nova_auth_url: "http://devstack.testing.ansible.com:5000/v2.0/"
 
 nova_groups:
   - group_name: eastcoast

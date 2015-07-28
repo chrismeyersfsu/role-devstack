@@ -7,7 +7,7 @@
     image_name: "{{ nova_image_name }}"
     name: "{{ nova_group.instance_name }}-{{ nova_group.group_name}}-{{ item }}"
     flavor_include: "{{ nova_flavor_name }}"
-    auth_url: "http://{{ inventory_hostname }}:5000/v2.0/"
+    auth_url: "http://{{ ansible_ssh_host|default(inventory_hostname) }}:5000/v2.0/"
     state: "{{ nova_instance_state }}"
     meta:
       group: "{{ nova_group.group_name }}"
