@@ -1,0 +1,36 @@
+---
+- name: Bring up docker containers
+  hosts: localhost
+  vars:
+    inventory:
+      - name: devstack_host_1
+        image: "ubuntu-upstart:14.04"
+  roles:
+    - { role: provision_docker, provision_docker_company: 'ansible', provision_docker_privileged: true, provision_docker_inventory: "{{ inventory }}" }
+
+- name: Run Tests
+  hosts: docker_containers
+  vars:
+    host_groups:
+      - group_name: eastcoast
+        instance_name: deceptacon
+        instance_count: 3
+      - group_name: westcoast
+        instance_name: autobot
+        instance_count: 2
+  pre_tasks:
+    - name: Install needed deps
+      local_action:
+        module: pip
+        name: python-novaclient
+  roles:
+    # Role under test
+    - { role: devstack, nova_groups: "{{ host_groups }}"  }
+  tasks:
+    # Verify role behavior
+    - name: Ensure the API port is up
+      wait_for: port=5000 delay=10
+
+    # TODO: Hit the API to list instances and ensure the 5 instances were created
+
+

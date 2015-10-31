@@ -39,5 +39,5 @@
   command: "{{ devstack_dir }}/stack.sh"
   sudo: yes
   sudo_user: "{{ devstack_user }}"
-  async: 1200
+  async: 3600 # 1 hour
   poll: 30
