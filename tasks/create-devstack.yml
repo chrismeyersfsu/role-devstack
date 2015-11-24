@@ -5,6 +5,8 @@
   apt: "name={{ item }} state=installed update_cache=yes"
   with_items:
     - git
+    - python-setuptools
+    - python-pip
   when: ansible_os_family == 'Debian'
 
 - name: Remove devstack repo
