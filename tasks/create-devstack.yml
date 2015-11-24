@@ -5,9 +5,21 @@
   apt: "name={{ item }} state=installed update_cache=yes"
   with_items:
     - git
-    - python-setuptools
-    - python-pip
   when: ansible_os_family == 'Debian'
+
+- name: Install dependencies
+  sudo: yes
+  yum: "name={{ item }} state=installed"
+  with_items:
+    - git
+  when: ansible_os_family == 'RedHat'
+
+- name: Allow running sudo without tty
+  sudo: yes
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: '^Defaults\s+requiretty'
+    line: 'Defaults !requiretty'
 
 - name: Remove devstack repo
   file: "path='{{ devstack_dir }}' state=absent"
@@ -38,7 +50,9 @@
 
   # path hack to work on centos 7
 - name: Run openstack init script
-  command: "{{ devstack_dir }}/stack.sh"
+  shell: "{{ devstack_dir }}/stack.sh" 
+  args:
+    executable: "/bin/bash"
   sudo: yes
   sudo_user: "{{ devstack_user }}"
   async: 3600 # 1 hour

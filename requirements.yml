@@ -1,5 +1,3 @@
-- src: chrismeyersfsu.provision_docker
-  name: provision_docker
 - src: chrismeyersfsu.iptables
   name: iptables
 - src: marcelnijenhof.firewalld

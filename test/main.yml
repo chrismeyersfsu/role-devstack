@@ -4,7 +4,7 @@
   vars:
     inventory:
       - name: devstack_host_1
-        image: "ubuntu-upstart:14.04"
+        image: "chrismeyers/centos7"
   roles:
     - { role: provision_docker, provision_docker_company: 'ansible', provision_docker_privileged: true, provision_docker_inventory: "{{ inventory }}" }
 
@@ -19,13 +19,14 @@
         instance_name: autobot
         instance_count: 2
   pre_tasks:
-    - name: Install needed deps
+    - name: Install needed python deps
       local_action:
         module: pip
         name: python-novaclient
+
   roles:
     # Role under test
-    - { role: devstack, nova_groups: "{{ host_groups }}"  }
+    - { role: devstack, nova_groups: "{{ host_groups }}", devstack_version: "stable/liberty"  }
   tasks:
     # Verify role behavior
     - name: Ensure the API port is up
