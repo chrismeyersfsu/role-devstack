@@ -58,26 +58,13 @@
   async: 3600 # 1 hour
   poll: 30
 
-- name: Install firewalld package
+- name: Stop firewalls
   sudo: yes
-  yum: pkg=firewalld state=present
-
-- name: Ensure firewalld is running and enabled on boot
-  sudo: yes
-  service: name=firewalld state=started enabled=yes
-
-- name: Add firewalld rules for ports from vars
-  sudo: yes
-  firewalld:
-    port: "{{ item }}/tcp"
-    permanent: true
-    state: 'enabled'
-  with_items: [27701, 5000, 8080, 80, 8774, 35357, 9696, 9292]
-
-- name: Reload firewalld
-  sudo: yes
-  service:
-    name: "firewalld"
-    state: "reloaded"
-
+  service: 
+    name: "{{ item }}"
+    state: 'stopped'
+  with_items:
+    - firewalld
+    - iptables
+  tags: firewalld
 
