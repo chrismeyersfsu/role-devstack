@@ -1,3 +1,4 @@
 *\.sublime-*
 test/roles/provision_docker
 test/roles/iptables
+test/roles/firewalld
