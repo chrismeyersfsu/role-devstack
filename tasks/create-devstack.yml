@@ -38,10 +38,10 @@
   sudo: yes
   file: "path='{{ devstack_dir }}' owner={{ devstack_user }} group={{ devstack_user }} recurse=true"
 
-#- name: Copy openstack config script
-#  template: "src='local.j2' dest='{{ devstack_dir }}/local.conf'"
-#  sudo: yes
-#  sudo_user: "{{ devstack_user }}"
+- name: Copy openstack config script
+  template: "src='local.j2' dest='{{ devstack_dir }}/local.conf'"
+  sudo: yes
+  sudo_user: "{{ devstack_user }}"
 
 - name: unstack before we stack
   sudo: yes
