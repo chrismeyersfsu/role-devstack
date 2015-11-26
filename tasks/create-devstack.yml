@@ -66,5 +66,4 @@
   with_items:
     - firewalld
     - iptables
-  tags: firewalld
 
