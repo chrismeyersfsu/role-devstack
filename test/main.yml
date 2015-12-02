@@ -26,6 +26,7 @@
 
   roles:
     # Role under test
+    # TODO: spinning up hosts on openstack fails in travisci docker world
     - { role: devstack, nova_groups: "{{ host_groups }}", devstack_version: "stable/liberty"  }
   tasks:
     # Verify role behavior
